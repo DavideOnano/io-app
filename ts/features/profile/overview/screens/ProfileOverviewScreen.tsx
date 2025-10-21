@@ -64,7 +64,7 @@ const ProfileOverviewScreen = () => {
   const birthDate = data?.birthDate
     ? format(data?.birthDate, "DD/MM/YYYY")
     : fallback;
-
+  // Items to display in the profile page
   const items = [
     {
       id: "fullName",
