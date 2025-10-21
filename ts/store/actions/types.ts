@@ -47,6 +47,7 @@ import { ProfileActions } from "../../features/settings/common/store/actions";
 import { UserDataProcessingActions } from "../../features/settings/common/store/actions/userDataProcessing";
 import { PinSetActions } from "../../features/settings/security/store/actions/pinset";
 import { TrialSystemActions } from "../../features/trialSystem/store/actions";
+import { ProfileOverviewActions } from "../../features/profile/overview/store/actions";
 import { UtmLinkActions } from "../../features/utmLink/store/actions";
 import { WalletActions } from "../../features/wallet/store/actions";
 import { WhatsNewActions } from "../../features/whatsnew/store/actions";
@@ -88,6 +89,7 @@ export type Action =
   | PreferencesActions
   | PersistedPreferencesActions
   | ProfileActions
+  | ProfileOverviewActions
   | ServicesActions
   | ContentActions
   | IdentificationActions

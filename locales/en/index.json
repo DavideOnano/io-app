@@ -667,6 +667,32 @@
         "fiscalCode": "Fiscal code"
       }
     },
+    "overview": {
+      "title": "Profile",
+      "loading": "Loading your profile...",
+      "items": {
+        "fullName": {
+          "title": "Full name"
+        },
+        "fiscalCode": {
+          "title": "Fiscal code"
+        },
+        "email": {
+          "title": "Email"
+        },
+        "birthDate": {
+          "title": "Date of birth"
+        }
+      },
+      "errors": {
+        "load": "We couldn't load your profile data."
+      },
+      "accessibility": {
+        "retry": "Retry loading your profile"
+      },
+      "contextualHelpTitle": "Your profile",
+      "contextualHelpContent": "**Here you can review the main information of your IO profile.**\nIf some details are outdated, go back and use the dedicated sections to update them."
+    },
     "security": {
       "title": "Security and login",
       "subtitle": "Manage in-app authentication methods.",
