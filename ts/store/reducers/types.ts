@@ -13,7 +13,7 @@ import { PersistedNotificationsState } from "../../features/pushNotifications/st
 import { ProfileState } from "../../features/settings/common/store/reducers";
 import { UserDataProcessingState } from "../../features/settings/common/store/reducers/userDataProcessing";
 import { TrialSystemState } from "../../features/trialSystem/store/reducers";
-import { ProfileOverviewState } from "../../features/profile/overview/store/types";
+import { ProfileOverviewState } from "../../features/profile/overview/store/reducer";
 import { AppState } from "./appState";
 import { AssistanceToolsState } from "./assistanceTools";
 import { BackedInfoState } from "./backendStatus/backendInfo";
