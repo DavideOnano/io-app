@@ -100,7 +100,7 @@ import { isProfileFirstOnBoarding } from "../features/settings/common/store/util
 import { handleApplicationStartupTransientError } from "../features/startup/sagas";
 import { watchTrialSystemSaga } from "../features/trialSystem/store/sagas/watchTrialSystemSaga";
 import { watchWalletSaga } from "../features/wallet/saga";
-import { watchProfileOverviewLoad } from "../features/profile/overview/store/saga";
+import { watchProfileOverviewLoad } from "../features/profile/overview/saga";
 import {
   watchGetZendeskTokenSaga,
   watchZendeskGetSessionSaga

@@ -1,12 +1,27 @@
 import * as pot from "@pagopa/ts-commons/lib/pot";
 import { getType } from "typesafe-actions";
 import { Action } from "../../../../store/actions/types";
+import { InitializedProfile } from "../../../../../definitions/backend/InitializedProfile";
+
 import {
   profileOverviewLoad,
   profileOverviewReset,
   ProfileOverviewActions
 } from "./actions";
-import { ProfileOverviewState } from "./types";
+
+export type ProfileOverview = {
+  givenName?: string;
+  familyName?: string;
+  fiscalCode?: string;
+  email?: string;
+  birthDate?: Date;
+};
+
+export type ProfileOverviewState = pot.Pot<ProfileOverview, Error>;
+
+export type ProfileOverviewMapper = (
+  profile: InitializedProfile
+) => ProfileOverview;
 
 const INITIAL_STATE: ProfileOverviewState = pot.none;
 

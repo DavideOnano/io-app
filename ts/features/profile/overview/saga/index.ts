@@ -7,8 +7,8 @@ import { readablePrivacyReport } from "../../../../utils/reporters";
 import { convertUnknownToError } from "../../../../utils/errors";
 import { ReduxSagaEffect, SagaCallReturnType } from "../../../../types/utils";
 import { withRefreshApiCall } from "../../../authentication/fastLogin/saga/utils";
-import { profileOverviewLoad } from "./actions";
-import { ProfileOverviewMapper } from "./types";
+import { profileOverviewLoad } from "../store/actions";
+import { ProfileOverviewMapper } from "../store/reducer";
 
 const mapInitializedProfileToOverview: ProfileOverviewMapper = profile => ({
   givenName: profile.name,

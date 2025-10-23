@@ -3,7 +3,7 @@ import * as O from "fp-ts/lib/Option";
 import { pipe } from "fp-ts/lib/function";
 import { createSelector } from "reselect";
 import { GlobalState } from "../../../../store/reducers/types";
-import { ProfileOverview, ProfileOverviewState } from "./types";
+import { ProfileOverview, ProfileOverviewState } from "./reducer";
 
 export const profileOverviewStateSelector = (
   state: GlobalState

@@ -1,5 +1,5 @@
 import { createAsyncAction, createStandardAction } from "typesafe-actions";
-import { ProfileOverview } from "./types";
+import { ProfileOverview } from "./reducer";
 
 export const profileOverviewLoad = createAsyncAction(
   "profile/overview/load/request",
