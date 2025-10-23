@@ -667,6 +667,32 @@
         "fiscalCode": "Codice Fiscale"
       }
     },
+    "overview": {
+      "title": "Profilo",
+      "loading": "Caricamento del profilo in corso...",
+      "items": {
+        "fullName": {
+          "title": "Nome e cognome"
+        },
+        "fiscalCode": {
+          "title": "Codice fiscale"
+        },
+        "email": {
+          "title": "Email"
+        },
+        "birthDate": {
+          "title": "Data di nascita"
+        }
+      },
+      "errors": {
+        "load": "Non è stato possibile caricare i dati del profilo."
+      },
+      "accessibility": {
+        "retry": "Riprova a caricare il profilo"
+      },
+      "contextualHelpTitle": "Il tuo profilo",
+      "contextualHelpContent": "**In questa schermata puoi consultare i dati principali del tuo profilo IO.**\nSe alcune informazioni non sono aggiornate, torna indietro e usa le sezioni dedicate per modificarle."
+    },
     "security": {
       "title": "Sicurezza e accesso",
       "subtitle": "Gestisci le modalità di autenticazione in app.",

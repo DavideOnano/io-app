@@ -15,7 +15,7 @@ import PinScreen from "../../security/screens/PinScreen";
 import PreferencesScreen from "../../preferences/screens/PreferencesScreen";
 import PrivacyMainScreen from "../../privacy/screens/PrivacyMainScreen";
 import ProfileAboutApp from "../../aboutApp/screens/ProfileAboutApp";
-import ProfileDataScreen from "../../userData/screens/ProfileDataScreen";
+import ProfileOverviewScreen from "../../../profile/overview/screens/ProfileOverviewScreen";
 import RemoveAccountDetails from "../../privacy/screens/RemoveAccountDetailsScreen";
 import RemoveAccountInfo from "../../privacy/screens/RemoveAccountInfoScreen";
 import RemoveAccountSuccess from "../../privacy/screens/RemoveAccountSuccessScreen";
@@ -53,7 +53,7 @@ const SettingsStackNavigator = () => (
     />
     <Stack.Screen
       name={SETTINGS_ROUTES.PROFILE_DATA}
-      component={ProfileDataScreen}
+      component={ProfileOverviewScreen}
     />
     <Stack.Screen
       name={SETTINGS_ROUTES.PROFILE_PRIVACY_MAIN}
