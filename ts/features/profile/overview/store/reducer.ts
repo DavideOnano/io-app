@@ -1,10 +1,9 @@
 import * as pot from "@pagopa/ts-commons/lib/pot";
+import { getType } from "typesafe-actions";
 import { Action } from "../../../../store/actions/types";
 import {
-  PROFILE_OVERVIEW_LOAD_FAILURE,
-  PROFILE_OVERVIEW_LOAD_REQUEST,
-  PROFILE_OVERVIEW_LOAD_SUCCESS,
-  PROFILE_OVERVIEW_RESET,
+  profileOverviewLoad,
+  profileOverviewReset,
   ProfileOverviewActions
 } from "./actions";
 import { ProfileOverviewState } from "./types";
@@ -14,10 +13,10 @@ const INITIAL_STATE: ProfileOverviewState = pot.none;
 const PROFILE_OVERVIEW_ACTION_TYPES: ReadonlyArray<
   ProfileOverviewActions["type"]
 > = [
-  PROFILE_OVERVIEW_RESET,
-  PROFILE_OVERVIEW_LOAD_REQUEST,
-  PROFILE_OVERVIEW_LOAD_SUCCESS,
-  PROFILE_OVERVIEW_LOAD_FAILURE
+  getType(profileOverviewReset),
+  getType(profileOverviewLoad.request),
+  getType(profileOverviewLoad.success),
+  getType(profileOverviewLoad.failure)
 ];
 
 const isProfileOverviewAction = (
@@ -36,13 +35,13 @@ const profileOverviewReducer = (
   }
 
   switch (action.type) {
-    case PROFILE_OVERVIEW_RESET:
+    case getType(profileOverviewReset):
       return pot.none;
-    case PROFILE_OVERVIEW_LOAD_REQUEST:
+    case getType(profileOverviewLoad.request):
       return pot.toLoading(state);
-    case PROFILE_OVERVIEW_LOAD_SUCCESS:
+    case getType(profileOverviewLoad.success):
       return pot.some(action.payload);
-    case PROFILE_OVERVIEW_LOAD_FAILURE:
+    case getType(profileOverviewLoad.failure):
       return pot.toError(state, action.payload);
     default:
       return state;
