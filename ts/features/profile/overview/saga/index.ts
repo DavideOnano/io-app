@@ -1,7 +1,7 @@
 import * as Either from "fp-ts/lib/Either";
 import I18n from "i18next";
 import { call, put, takeLatest } from "typed-redux-saga/macro";
-import { getType } from "typesafe-actions";
+import { ActionType, getType } from "typesafe-actions";
 import { BackendClient } from "../../../../api/backend";
 import { readablePrivacyReport } from "../../../../utils/reporters";
 import { convertUnknownToError } from "../../../../utils/errors";
@@ -19,13 +19,15 @@ const mapInitializedProfileToOverview: ProfileOverviewMapper = profile => ({
 });
 
 export function* handleProfileOverviewLoad(
-  getProfile: ReturnType<typeof BackendClient>["getProfile"]
+  getProfile: ReturnType<typeof BackendClient>["getProfile"],
+  action: ActionType<typeof profileOverviewLoad.request>
 ): Generator<ReduxSagaEffect, void, SagaCallReturnType<typeof getProfile>> {
   try {
     // retrieve profile data from backend
     const response = (yield* call(
       withRefreshApiCall,
-      getProfile({})
+      getProfile({}),
+      action
     )) as unknown as SagaCallReturnType<typeof getProfile>;
 
     if (Either.isLeft(response)) {
@@ -38,6 +40,10 @@ export function* handleProfileOverviewLoad(
           mapInitializedProfileToOverview(response.right.value)
         )
       );
+      return;
+    }
+
+    if (response.right.status === 401) {
       return;
     }
 
