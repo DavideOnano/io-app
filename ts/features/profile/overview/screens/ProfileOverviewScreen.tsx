@@ -1,6 +1,11 @@
-import { useIOTheme } from "@pagopa/io-app-design-system";
+import {
+  ContentWrapper,
+  ListItemSwitch,
+  VSpacer,
+  useIOTheme
+} from "@pagopa/io-app-design-system";
 import I18n from "i18next";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import * as pot from "@pagopa/ts-commons/lib/pot";
 import { ContextualHelpPropsMarkdown } from "../../../../components/screens/BaseScreenComponent";
 import { useIODispatch, useIOSelector } from "../../../../store/hooks";
@@ -13,6 +18,13 @@ import {
   LoadingComponent
 } from "../components/ProfileOverviewComponents";
 import { ProfileItemsView } from "../components/ProfileItemsView";
+import { UserDataProcessingChoiceEnum } from "../../../../../definitions/backend/UserDataProcessingChoice";
+import { loadUserDataProcessing } from "../../../settings/common/store/actions/userDataProcessing";
+import {
+  isUserDataProcessingDeleteLoadingSelector,
+  userDataProcessingSelector
+} from "../../../settings/common/store/selectors/userDataProcessing";
+import { UserDataProcessingStatusEnum } from "../../../../../definitions/backend/UserDataProcessingStatus";
 
 const contextualHelpMarkdown: ContextualHelpPropsMarkdown = {
   title: "profile.overview.contextualHelpTitle",
@@ -29,14 +41,40 @@ const ProfileOverviewScreen = () => {
   const dispatch = useIODispatch();
   const theme = useIOTheme();
   const profileOverview = useIOSelector(profileOverviewStateSelector);
+  const deleteChoice = UserDataProcessingChoiceEnum.DELETE;
+  const userDataProcessing = useIOSelector(userDataProcessingSelector);
+  const deleteRequestState = userDataProcessing[deleteChoice];
+  const isDeleteLoading = useIOSelector(
+    isUserDataProcessingDeleteLoadingSelector
+  );
+
+  // Determine if profile deletion has been requested
+  const isProfileDeletionRequested = useMemo(
+    () =>
+      pot.getOrElse(
+        pot.map(
+          deleteRequestState,
+          value =>
+            value !== undefined &&
+            value.status !== UserDataProcessingStatusEnum.CLOSED &&
+            value.status !== UserDataProcessingStatusEnum.ABORTED
+        ),
+        false
+      ),
+    [deleteRequestState]
+  );
+
+  const shouldShowDeletionSpinner =
+    isDeleteLoading || pot.isNone(deleteRequestState);
+
+  const loadProfile = useCallback(() => {
+    dispatch(profileOverviewLoad.request());
+    dispatch(loadUserDataProcessing.request(deleteChoice));
+  }, [dispatch, deleteChoice]);
 
   useEffect(() => {
-    dispatch(profileOverviewLoad.request());
-  }, [dispatch]);
-
-  const handleRetry = useCallback(() => {
-    dispatch(profileOverviewLoad.request());
-  }, [dispatch]);
+    loadProfile();
+  }, [loadProfile]);
 
   const ProfileContent = useCallback(
     () =>
@@ -45,13 +83,13 @@ const ProfileOverviewScreen = () => {
         () => <LoadingComponent theme={theme} />,
         () => <LoadingComponent theme={theme} />,
         () => <LoadingComponent theme={theme} />,
-        () => <ErrorComponent onRetry={handleRetry} />,
+        () => <ErrorComponent onRetry={loadProfile} />,
         data => <ProfileItemsView data={data} />,
         data => <ProfileItemsView data={data} />,
         (data, _) => <ProfileItemsView data={data} />,
         (data, _) => <ProfileItemsView data={data} />
       ),
-    [profileOverview, theme, handleRetry]
+    [profileOverview, theme, loadProfile]
   );
 
   return (
@@ -62,6 +100,18 @@ const ProfileOverviewScreen = () => {
       contextualHelpMarkdown={contextualHelpMarkdown}
       faqCategories={FAQ_CATEGORIES}
     >
+      <ContentWrapper>
+        <ListItemSwitch
+          testID="profile-overview-profile-deletion"
+          label={I18n.t("profile.main.privacy.removeAccount.title")}
+          value={isProfileDeletionRequested}
+          isLoading={shouldShowDeletionSpinner}
+          // TODO add disable logic when profile deletion feature is implemented, atm is always
+          disabled={true}
+          onSwitchValueChange={() => undefined}
+        />
+      </ContentWrapper>
+      <VSpacer size={16} />
       <ProfileContent />
     </IOScrollViewWithLargeHeader>
   );
