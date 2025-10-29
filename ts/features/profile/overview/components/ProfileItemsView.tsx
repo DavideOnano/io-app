@@ -7,9 +7,10 @@ import {
 import I18n from "i18next";
 import { ScrollView, StyleSheet } from "react-native";
 import { format } from "../../../../utils/dates";
+import { ProfileOverview } from "../store/reducer";
 
 // items to be displayed in the profile overview
-export const ProfileItemsView = ({ data }: { data: any }) => {
+export const ProfileItemsView = ({ data }: { data: ProfileOverview }) => {
   const fallback = I18n.t("global.remoteStates.notAvailable");
   const fullName = [data?.givenName, data?.familyName]
     .filter(Boolean)
