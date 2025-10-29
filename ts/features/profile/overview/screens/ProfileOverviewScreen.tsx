@@ -106,6 +106,7 @@ const ProfileOverviewScreen = () => {
           label={I18n.t("profile.main.privacy.removeAccount.title")}
           value={isProfileDeletionRequested}
           isLoading={shouldShowDeletionSpinner}
+          switchTestID="profile-overview-profile-deletion-switch"
           // TODO add disable logic when profile deletion feature is implemented, atm is always
           disabled={true}
           onSwitchValueChange={() => undefined}
