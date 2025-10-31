@@ -96,12 +96,17 @@ const ProfileOverviewScreen = () => {
 
   const loadProfile = useCallback(() => {
     dispatch(profileOverviewLoad.request());
-    dispatch(loadUserDataProcessing.request(deleteChoice));
-  }, [dispatch, deleteChoice]);
+  }, [dispatch]);
 
   useEffect(() => {
     loadProfile();
   }, [loadProfile]);
+
+  useEffect(() => {
+    if (pot.isNone(deleteRequestState)) {
+      dispatch(loadUserDataProcessing.request(deleteChoice));
+    }
+  }, [dispatch, deleteChoice, deleteRequestState]);
 
   const ProfileContent = useCallback(
     () =>
