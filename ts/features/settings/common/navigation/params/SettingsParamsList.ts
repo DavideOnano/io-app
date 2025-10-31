@@ -3,7 +3,7 @@ import { EmailInsertScreenNavigationParams } from "../../../userData/shared/scre
 import { SendEmailValidationScreenProp } from "../../../userData/shared/screens/EmailValidationSendEmailScreen";
 import { SETTINGS_ROUTES } from "../routes";
 import { AuthenticationParamsList } from "../../../../authentication/common/navigation/params/AuthenticationParamsList";
-import { ProfileRemoveAccountFlowParams } from "../../../privacy/screens/RemoveAccountWarningScreen";
+import { ProfileRemoveAccountFlowParams } from "../../../../profile/overview/screens/RemoveAccountWarningScreen";
 
 export type SettingsParamsList = {
   [SETTINGS_ROUTES.PROFILE_PRIVACY_MAIN]: undefined;
