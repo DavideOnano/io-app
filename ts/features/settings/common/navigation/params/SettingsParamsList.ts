@@ -3,6 +3,7 @@ import { EmailInsertScreenNavigationParams } from "../../../userData/shared/scre
 import { SendEmailValidationScreenProp } from "../../../userData/shared/screens/EmailValidationSendEmailScreen";
 import { SETTINGS_ROUTES } from "../routes";
 import { AuthenticationParamsList } from "../../../../authentication/common/navigation/params/AuthenticationParamsList";
+import { ProfileRemoveAccountFlowParams } from "../../../privacy/screens/RemoveAccountWarningScreen";
 
 export type SettingsParamsList = {
   [SETTINGS_ROUTES.PROFILE_PRIVACY_MAIN]: undefined;
@@ -25,9 +26,17 @@ export type SettingsParamsList = {
   [SETTINGS_ROUTES.PROFILE_DOWNLOAD_DATA]: undefined;
   [SETTINGS_ROUTES.DESIGN_SYSTEM]: undefined;
   [SETTINGS_ROUTES.LOLLIPOP_PLAYGROUND]: undefined;
+  [SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_WARNING]:
+    | ProfileRemoveAccountFlowParams
+    | undefined;
+  [SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_SUMMARY]:
+    | ProfileRemoveAccountFlowParams
+    | undefined;
   [SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_INFO]: undefined;
   [SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_DETAILS]: undefined;
-  [SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_SUCCESS]: undefined;
+  [SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_SUCCESS]:
+    | ProfileRemoveAccountFlowParams
+    | undefined;
   [SETTINGS_ROUTES.CGN_LANDING_PLAYGROUND]: undefined;
   [SETTINGS_ROUTES.TRIALS_SYSTEM_PLAYGROUND]: undefined;
   [SETTINGS_ROUTES.PROFILE_PREFERENCES_NOTIFICATIONS]: undefined;

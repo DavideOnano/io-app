@@ -7,6 +7,8 @@ import {
 import I18n from "i18next";
 import { useCallback, useEffect, useMemo } from "react";
 import * as pot from "@pagopa/ts-commons/lib/pot";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { ContextualHelpPropsMarkdown } from "../../../../components/screens/BaseScreenComponent";
 import { useIODispatch, useIOSelector } from "../../../../store/hooks";
 import { FAQsCategoriesType } from "../../../../utils/faq";
@@ -25,6 +27,8 @@ import {
   userDataProcessingSelector
 } from "../../../settings/common/store/selectors/userDataProcessing";
 import { UserDataProcessingStatusEnum } from "../../../../../definitions/backend/UserDataProcessingStatus";
+import { SettingsParamsList } from "../../../settings/common/navigation/params/SettingsParamsList";
+import { SETTINGS_ROUTES } from "../../../settings/common/navigation/routes";
 
 const contextualHelpMarkdown: ContextualHelpPropsMarkdown = {
   title: "profile.overview.contextualHelpTitle",
@@ -41,6 +45,13 @@ const ProfileOverviewScreen = () => {
   const dispatch = useIODispatch();
   const theme = useIOTheme();
   const profileOverview = useIOSelector(profileOverviewStateSelector);
+  const settingsNavigation =
+    useNavigation<
+      StackNavigationProp<
+        SettingsParamsList,
+        typeof SETTINGS_ROUTES.PROFILE_DATA
+      >
+    >();
   const deleteChoice = UserDataProcessingChoiceEnum.DELETE;
   const userDataProcessing = useIOSelector(userDataProcessingSelector);
   const deleteRequestState = userDataProcessing[deleteChoice];
@@ -66,6 +77,22 @@ const ProfileOverviewScreen = () => {
 
   const shouldShowDeletionSpinner =
     isDeleteLoading || pot.isNone(deleteRequestState);
+  const isDeletionSwitchDisabled =
+    shouldShowDeletionSpinner || isProfileDeletionRequested;
+
+  const handleDeletionSwitchChange = useCallback(
+    (value: boolean) => {
+      if (!value || isDeletionSwitchDisabled) {
+        return;
+      }
+
+      settingsNavigation.navigate(
+        SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_WARNING,
+        { origin: "profile" }
+      );
+    },
+    [isDeletionSwitchDisabled, settingsNavigation]
+  );
 
   const loadProfile = useCallback(() => {
     dispatch(profileOverviewLoad.request());
@@ -107,9 +134,8 @@ const ProfileOverviewScreen = () => {
           value={isProfileDeletionRequested}
           isLoading={shouldShowDeletionSpinner}
           switchTestID="profile-overview-profile-deletion-switch"
-          // TODO add disable logic when profile deletion feature is implemented, atm is always
-          disabled={true}
-          onSwitchValueChange={() => undefined}
+          disabled={isDeletionSwitchDisabled}
+          onSwitchValueChange={handleDeletionSwitchChange}
         />
       </ContentWrapper>
       <VSpacer size={16} />

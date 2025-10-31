@@ -1,4 +1,4 @@
-import { IOColors, IOToast } from "@pagopa/io-app-design-system";
+import { IOColors, IOToast, ListItemNav } from "@pagopa/io-app-design-system";
 import { useFocusEffect } from "@react-navigation/native";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Animated, { useAnimatedRef } from "react-native-reanimated";
@@ -29,6 +29,7 @@ import { WALLET_L3_BG_COLOR } from "../../itwallet/common/utils/constants";
 import { WalletCategoryFilterTabs } from "../components/WalletCategoryFilterTabs";
 import FocusAwareStatusBar from "../../../components/ui/FocusAwareStatusBar";
 import { useItwEidFeedbackBottomSheet } from "../../itwallet/common/hooks/useItwEidFeedbackBottomSheet.tsx";
+import { SETTINGS_ROUTES } from "../../settings/common/navigation/routes";
 
 export type WalletHomeNavigationParams = Readonly<{
   // Triggers the "New element added" toast display once the user returns to this screen
@@ -73,6 +74,13 @@ const WalletHomeScreen = ({ route }: ScreenProps) => {
     trackWalletAdd();
     navigation.navigate(ITW_ROUTES.MAIN, {
       screen: ITW_ROUTES.ONBOARDING
+    });
+  }, [navigation]);
+
+  const handleOpenProfileDeletionFlow = useCallback(() => {
+    navigation.navigate(SETTINGS_ROUTES.PROFILE_NAVIGATOR, {
+      screen: SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_WARNING,
+      params: { origin: "wallet" }
     });
   }, [navigation]);
 
@@ -164,6 +172,14 @@ const WalletHomeScreen = ({ route }: ScreenProps) => {
       >
         {!hasNewItwInterface && <WalletCategoryFilterTabs />}
         <WalletCardsContainer />
+        <ListItemNav
+          testID="wallet-profile-deletion-entry"
+          value={I18n.t("features.wallet.home.profileDeletion.title")}
+          description={I18n.t(
+            "features.wallet.home.profileDeletion.description"
+          )}
+          onPress={handleOpenProfileDeletionFlow}
+        />
       </IOScrollView>
       {itwFeedbackBottomSheet.bottomSheet}
     </>

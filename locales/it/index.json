@@ -24,7 +24,15 @@
       "venerdì",
       "sabato"
     ],
-    "abbr_day_names": ["dom", "lun", "mar", "mer", "gio", "ven", "sab"],
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mer",
+      "gio",
+      "ven",
+      "sab"
+    ],
     "month_names": [
       " ",
       "gennaio",
@@ -55,7 +63,10 @@
       "nov",
       "dic"
     ],
-    "meridian": ["am", "pm"],
+    "meridian": [
+      "am",
+      "pm"
+    ],
     "time": {
       "minutes_zero": "0 minuti",
       "minutes_one": "1 minuto",
@@ -457,6 +468,28 @@
         "removeAccount": {
           "title": "Elimina il tuo profilo",
           "description": "Elimina il tuo profilo e i tuoi dati personali",
+          "contextualHelpTitle": "Serve aiuto?",
+          "contextualHelpContent": "Scopri come gestire il tuo profilo IO e cosa comporta eliminarlo.",
+          "warning": {
+            "title": "Elimina il tuo profilo",
+            "subtitle": "Prima di continuare",
+            "body": "Stai per iniziare la procedura di eliminazione del tuo profilo IO. Prima di proseguire, assicurati di aver salvato eventuali messaggi o documenti che potrebbero servirti in futuro.",
+            "infoBox": "Una volta inviata la richiesta, non potrai più recuperare i dati presenti sull'app IO.",
+            "cta": {
+              "cancel": "Annulla",
+              "continue": "Continua"
+            }
+          },
+          "summary": {
+            "title": "Conferma l’eliminazione del tuo profilo",
+            "description": "Controlla i dati che verranno eliminati definitivamente con questa richiesta.",
+            "listTitle": "Queste informazioni verranno eliminate",
+            "errorMessage": "Non siamo riusciti a inviare la richiesta. Riprova.",
+            "cta": {
+              "cancel": "Annulla",
+              "continue": "Continua"
+            }
+          },
           "alert": {
             "activeBonusTitle": "Elimina il tuo profilo",
             "activeBonusDescription": "Sembra che tu abbia aderito ad alcune iniziative presenti su IO. Se elimini il tuo profilo, l’iscrizione a eventuali iniziative a cui hai aderito non verrà cancellata\n\nPer gestirle, vai alla sezione Portafoglio, altrimenti scegli “Elimina”",
@@ -4274,6 +4307,10 @@
           "title": "Vuoi pagare un avviso?",
           "action": "Vai alla sezione Pagamenti",
           "close": "Chiudi"
+        },
+        "profileDeletion": {
+          "title": "Elimina il tuo profilo IO",
+          "description": "Avvia la procedura per cancellare il tuo profilo e i tuoi dati."
         },
         "otherMethods": {
           "error": {
