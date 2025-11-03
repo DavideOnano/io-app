@@ -3,7 +3,7 @@ import {
   FooterActionsInline,
   VSpacer
 } from "@pagopa/io-app-design-system";
-import { RouteProp, useRoute } from "@react-navigation/native";
+import { RouteProp } from "@react-navigation/native";
 import I18n from "i18next";
 import { useCallback } from "react";
 import { ContextualHelpPropsMarkdown } from "../../../../components/screens/BaseScreenComponent";
