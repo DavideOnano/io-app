@@ -51,6 +51,7 @@ import { isDevEnv } from "../../utils/environment";
 import { Action } from "../actions/types";
 import createSecureStorage from "../storages/keychain";
 import { DateISO8601Transform } from "../transforms/dateISO8601Tranform";
+import { profileOverviewReducer } from "../../features/profile/overview/store/reducer";
 import appStateReducer from "./appState";
 import assistanceToolsReducer from "./assistanceTools";
 import { backendInfoReducer } from "./backendStatus/backendInfo";
@@ -158,6 +159,7 @@ export const appReducer: Reducer<GlobalState, Action> = combineReducers<
   onboarding: onboardingReducer,
   notifications: persistedNotificationsReducer,
   profile: profileReducer,
+  profileOverview: profileOverviewReducer,
   userDataProcessing: userDataProcessingReducer,
   entities: persistReducer<EntitiesState, Action>(
     entitiesPersistConfig,
