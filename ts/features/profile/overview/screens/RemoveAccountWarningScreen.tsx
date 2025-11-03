@@ -19,11 +19,6 @@ export type ProfileRemoveAccountFlowParams = Readonly<{
   origin?: ProfileRemoveAccountFlowOrigin;
 }>;
 
-type RemoveAccountWarningRouteProps = RouteProp<
-  SettingsParamsList,
-  typeof SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_WARNING
->;
-
 const contextualHelpMarkdown: ContextualHelpPropsMarkdown = {
   title: "profile.main.privacy.removeAccount.contextualHelpTitle",
   body: "profile.main.privacy.removeAccount.contextualHelpContent"
