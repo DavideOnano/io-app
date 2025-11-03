@@ -29,9 +29,6 @@ export type SettingsParamsList = {
   [SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_WARNING]:
     | ProfileRemoveAccountFlowParams
     | undefined;
-  [SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_SUMMARY]:
-    | ProfileRemoveAccountFlowParams
-    | undefined;
   [SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_INFO]: undefined;
   [SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_DETAILS]: undefined;
   [SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_SUCCESS]:

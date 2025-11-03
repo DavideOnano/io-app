@@ -38,25 +38,14 @@ const FAQ_CATEGORIES: ReadonlyArray<FAQsCategoriesType> = [
 const RemoveAccountWarningScreen = () => {
   const route = useRoute<RemoveAccountWarningRouteProps>();
   const navigation = useIONavigation();
-  const settingsNavigation =
-    useNavigation<
-      StackNavigationProp<
-        SettingsParamsList,
-        typeof SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_WARNING
-      >
-    >();
-  const origin = route.params ? route.params.origin : undefined;
 
   const handleBack = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
 
-  const handleContinue = useCallback(() => {
-    settingsNavigation.navigate(
-      SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_SUMMARY,
-      origin ? { origin } : undefined
-    );
-  }, [origin, settingsNavigation]);
+  // TODO: we should navigate to profile remove account summary screen
+  // for now we do nothing
+  const handleContinue = () => undefined;
 
   return (
     <>

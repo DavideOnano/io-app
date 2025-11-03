@@ -18,7 +18,6 @@ import ProfileAboutApp from "../../aboutApp/screens/ProfileAboutApp";
 import ProfileOverviewScreen from "../../../profile/overview/screens/ProfileOverviewScreen";
 import RemoveAccountDetails from "../../privacy/screens/RemoveAccountDetailsScreen";
 import RemoveAccountInfo from "../../privacy/screens/RemoveAccountInfoScreen";
-import RemoveAccountSummaryScreen from "../../../profile/overview/screens/RemoveAccountSummaryScreen";
 import RemoveAccountWarningScreen from "../../../profile/overview/screens/RemoveAccountWarningScreen";
 import RemoveAccountSuccess from "../../privacy/screens/RemoveAccountSuccessScreen";
 import SecurityScreen from "../../security/screens/SecurityScreen";
@@ -176,10 +175,6 @@ const SettingsStackNavigator = () => (
     <Stack.Screen
       name={SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_WARNING}
       component={RemoveAccountWarningScreen}
-    />
-    <Stack.Screen
-      name={SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_SUMMARY}
-      component={RemoveAccountSummaryScreen}
     />
     <Stack.Screen
       name={SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_DETAILS}
