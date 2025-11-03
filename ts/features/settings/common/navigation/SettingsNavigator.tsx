@@ -34,6 +34,7 @@ import { AppFeedbackPlayground } from "../../devMode/playgrounds/AppFeedbackPlay
 import AppearancePreferenceScreen from "../../preferences/screens/AppearancePreferenceScreen";
 import { CiePlayground } from "../../devMode/playgrounds/CiePlayground";
 import AuthenticationNavigator from "../../../authentication/common/navigation/AuthenticationNavigator";
+import RemoveAccountSummaryScreen from "../../../profile/overview/screens/RemoveAccountSummaryScreen";
 import { SettingsParamsList } from "./params/SettingsParamsList";
 import { SETTINGS_ROUTES } from "./routes";
 
@@ -175,6 +176,10 @@ const SettingsStackNavigator = () => (
     <Stack.Screen
       name={SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_WARNING}
       component={RemoveAccountWarningScreen}
+    />
+    <Stack.Screen
+      name={SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_SUMMARY}
+      component={RemoveAccountSummaryScreen}
     />
     <Stack.Screen
       name={SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_DETAILS}

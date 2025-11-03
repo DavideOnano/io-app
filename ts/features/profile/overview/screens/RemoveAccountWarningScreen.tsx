@@ -3,18 +3,27 @@ import {
   FooterActionsInline,
   VSpacer
 } from "@pagopa/io-app-design-system";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import I18n from "i18next";
 import { useCallback } from "react";
 import { ContextualHelpPropsMarkdown } from "../../../../components/screens/BaseScreenComponent";
 import { IOScrollViewWithLargeHeader } from "../../../../components/ui/IOScrollViewWithLargeHeader";
 import { useIONavigation } from "../../../../navigation/params/AppParamsList";
 import { FAQsCategoriesType } from "../../../../utils/faq";
+import { SettingsParamsList } from "../../../settings/common/navigation/params/SettingsParamsList";
+import { SETTINGS_ROUTES } from "../../../settings/common/navigation/routes";
 
 export type ProfileRemoveAccountFlowOrigin = "wallet" | "profile";
 
 export type ProfileRemoveAccountFlowParams = Readonly<{
   origin?: ProfileRemoveAccountFlowOrigin;
 }>;
+
+type RemoveAccountWarningRouteProps = RouteProp<
+  SettingsParamsList,
+  typeof SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_WARNING
+>;
 
 const contextualHelpMarkdown: ContextualHelpPropsMarkdown = {
   title: "profile.main.privacy.removeAccount.contextualHelpTitle",
@@ -27,15 +36,27 @@ const FAQ_CATEGORIES: ReadonlyArray<FAQsCategoriesType> = [
 ];
 
 const RemoveAccountWarningScreen = () => {
+  const route = useRoute<RemoveAccountWarningRouteProps>();
   const navigation = useIONavigation();
+  const settingsNavigation =
+    useNavigation<
+      StackNavigationProp<
+        SettingsParamsList,
+        typeof SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_WARNING
+      >
+    >();
+  const origin = route.params ? route.params.origin : undefined;
 
   const handleBack = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
 
-  // TODO: we should navigate to profile remove account summary screen
-  // for now we do nothing
-  const handleContinue = () => undefined;
+  const handleContinue = useCallback(() => {
+    settingsNavigation.navigate(
+      SETTINGS_ROUTES.PROFILE_REMOVE_ACCOUNT_SUMMARY,
+      origin ? { origin } : undefined
+    );
+  }, [origin, settingsNavigation]);
 
   return (
     <>
