@@ -3,15 +3,12 @@ import {
   FooterActionsInline,
   VSpacer
 } from "@pagopa/io-app-design-system";
-import { RouteProp } from "@react-navigation/native";
 import I18n from "i18next";
 import { useCallback } from "react";
 import { ContextualHelpPropsMarkdown } from "../../../../components/screens/BaseScreenComponent";
 import { IOScrollViewWithLargeHeader } from "../../../../components/ui/IOScrollViewWithLargeHeader";
 import { useIONavigation } from "../../../../navigation/params/AppParamsList";
 import { FAQsCategoriesType } from "../../../../utils/faq";
-import { SettingsParamsList } from "../../../settings/common/navigation/params/SettingsParamsList";
-import { SETTINGS_ROUTES } from "../../../settings/common/navigation/routes";
 
 export type ProfileRemoveAccountFlowOrigin = "wallet" | "profile";
 
