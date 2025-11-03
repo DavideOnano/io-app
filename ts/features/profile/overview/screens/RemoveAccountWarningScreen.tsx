@@ -3,8 +3,7 @@ import {
   FooterActionsInline,
   VSpacer
 } from "@pagopa/io-app-design-system";
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { RouteProp, useRoute } from "@react-navigation/native";
 import I18n from "i18next";
 import { useCallback } from "react";
 import { ContextualHelpPropsMarkdown } from "../../../../components/screens/BaseScreenComponent";
@@ -36,7 +35,6 @@ const FAQ_CATEGORIES: ReadonlyArray<FAQsCategoriesType> = [
 ];
 
 const RemoveAccountWarningScreen = () => {
-  const route = useRoute<RemoveAccountWarningRouteProps>();
   const navigation = useIONavigation();
 
   const handleBack = useCallback(() => {
